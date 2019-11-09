@@ -19,8 +19,8 @@ export default {
     appAppbar: appbar,
     appHeadercomp: headerapp,
   },
-  data: () => ({
-    //
-  }),
+  created() {
+    this.$store.dispatch('initStocks')
+  }
 };
 </script>
