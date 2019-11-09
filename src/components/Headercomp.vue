@@ -2,13 +2,15 @@
   <div class="mt-12">
     <v-toolbar class="mt-4">
       <v-toolbar-title>Stocks</v-toolbar-title>
-
+      
       <v-container d-flex>
-        <v-btn large elevation to="/stocks">Link 1</v-btn>
-        <v-btn large elevation>{{ buttontext }}</v-btn>
+        <v-toolbar-items>
+        <v-btn large elevation to="/">Home</v-btn>
+        <v-btn large elevation to="/stocks">{{ buttontext }}</v-btn>
         <v-btn large elevation class="light-blue">Link 3</v-btn>
+        </v-toolbar-items>
         <v-btn icon>
-          <v-icon>mdi-console</v-icon>
+        <v-icon>mdi-console</v-icon>
         </v-btn>
 
         <template v-if="$vuetify.breakpoint.smAndUp">
@@ -29,9 +31,9 @@
 
 <script>
 export default {
-  name: "header",
+  name: "headercomp",
   data: () => ({
-    buttontext: "button"
+    buttontext: "Stocks"
   })
 };
 </script>

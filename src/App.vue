@@ -1,26 +1,26 @@
 <template>
   <v-app>
-    <app-Appbar></app-Appbar>
-    <app-Header></app-Header>
+    <app-Appbar />
 
-    <v-content class="xs-12 sm-12 md-12 lg-12">
+    <app-Headercomp />
+    <v-content>
       <router-view></router-view>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import Appbar from "./components/Toolbar";
-import Header from "./components/Header";
-export default {
-  components: {
-    appHeader: Header,
-    appAppbar: Appbar
-  },
-  name: "App",
 
+import appbar from './components/Appbar'
+import headerapp from './components/Headercomp'
+export default {
+  name: 'App',
+  components: {
+    appAppbar: appbar,
+    appHeadercomp: headerapp,
+  },
   data: () => ({
     //
-  })
+  }),
 };
 </script>
