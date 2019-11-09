@@ -1,7 +1,7 @@
 <template>
 <v-row style="border: 1px solid black;">
     <v-col v-for="(stock, id) in stocks" :key="id">
-    <app-stock lg2 xs12   :stock="stock"></app-stock>
+    <app-stock :stock="stock"></app-stock>
     {{id}}
     </v-col>
 </v-row>
@@ -9,6 +9,7 @@
 
 <script>
 import Stock from './Stock'
+
 export default {
     components: {
         appStock: Stock

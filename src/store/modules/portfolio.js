@@ -36,8 +36,8 @@ sellStock({ commit }, order){
 
 const getters = {
     stockPortfolio (state, getters){
-        return state.stocks.map(stocks=> {
-            const record = getters.stocks.find(element => element.id == stockId);
+        return state.stocks.map(stock => {
+            const record = getters.stocks.find(element => element.id == stock.id);
             return { 
                 id: stock.id,
                 quantity: stock.quantity,

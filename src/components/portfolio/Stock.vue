@@ -25,6 +25,8 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
+
 export default {
     props:
         ['stock'],
@@ -34,6 +36,9 @@ export default {
         }
     },
     methods: {
+        ...mapActions([
+            'sellStock'
+        ]),
         disableButton(){
             if(this.quantity <=0) {
             return true;
@@ -42,7 +47,12 @@ export default {
             }
         },
         sellStock() {
-            const order
+            const order ={
+                stockId: this.stock.id,
+                stockPrice: this.stock.price,
+                quantity: this.quantity
+            };
+            this.sellStock();
         }
     }    
 }

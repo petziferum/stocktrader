@@ -7,7 +7,7 @@
         <v-toolbar-items>
         <v-btn large elevation to="/">Home</v-btn>
         <v-btn large elevation to="/stocks">{{ buttontext }}</v-btn>
-        <v-btn large elevation class="light-blue">Link 3</v-btn>
+        <v-btn large elevation to="/portfolio" class="light-blue">Portfolio</v-btn>
         </v-toolbar-items>
         <v-btn icon>
         <v-icon>mdi-console</v-icon>
