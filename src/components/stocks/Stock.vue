@@ -1,5 +1,5 @@
 <template>
-        <v-card class="ma-2" max-width="600px">
+        <v-card class="ma-2" width="600px">
             <v-card-title class="success">
                 {{ stock.name}}
             <v-card-subtitle>
@@ -14,10 +14,12 @@
                     class="form-control"
                     placeholder="Quantity"
                     v-model="quantity"
+                    :class="{danger: insufficientFunds}"
                     >
                     </v-col>
                     <v-col cols="3">
-                    <v-btn @click="buyStock" :disabled="disableButton()">Buy</v-btn>
+                    <v-btn @click="buyStock" 
+                    :disabled="disableButton()">Buy</v-btn>
                 </v-col>
                 </v-row>
             </v-container>
@@ -33,9 +35,17 @@ export default {
             quantity: 0
         }
     },
+    computed: {
+        funds() {
+            return this.$store.getters.funds;
+        },
+        insufficientFunds(){
+            return this.quantity * this.stock.price > this.funds;
+        }
+    },
     methods: {
         disableButton(){
-            if(this.quantity <=0) {
+            if(this.quantity <=0 || this.quantity * this.stock.price > this.funds) {
             return true;
             } else {
                 return false;
@@ -43,15 +53,18 @@ export default {
         },
         buyStock() {
             const order = {
-                stockid: this.stock.id,
+                stockId: this.stock.id,
                 stockPrice: this.stock.price,
                 quantity: this.quantity
-            
             };
-            console.log(order)
             this.$store.dispatch('buyStock', order);
             this.quantity =0;
         }
     }    
 }
 </script>
+<style scoped>
+.danger {
+    border:1px solid red;
+}
+</style>

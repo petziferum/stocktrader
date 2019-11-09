@@ -1,8 +1,7 @@
 <template>
-<v-row style="border: 1px solid black;">
-    <v-col v-for="(stock, id) in stocks" :key="id">
+<v-row>
+    <v-col v-for="stock in stocks" :key="stock.id">
     <app-stock :stock="stock"></app-stock>
-    {{id}}
     </v-col>
 </v-row>
 </template>

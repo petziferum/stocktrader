@@ -17,7 +17,7 @@
                     >
                     </v-col>
                     <v-col cols="3">
-                    <v-btn @click="sellStock" :disabled="disableButton()">Sell</v-btn>
+                    <v-btn @click="sellStock" :disabled="insufficientQuantity || disableButton()">Sell</v-btn>
                 </v-col>
                 </v-row>
             </v-container>
@@ -35,10 +35,15 @@ export default {
             quantity: 0
         }
     },
+    computed: {
+        insufficientQuantity() {
+            return this.quantity > this.stock.quantity;
+        }
+    },
     methods: {
-        ...mapActions([
-            'sellStock'
-        ]),
+        ...mapActions({
+            placeSellOrder: 'sellStock'
+        }),
         disableButton(){
             if(this.quantity <=0) {
             return true;
@@ -52,7 +57,8 @@ export default {
                 stockPrice: this.stock.price,
                 quantity: this.quantity
             };
-            this.sellStock();
+            this.placeSellOrder(order);
+            this.quantity =0;
         }
     }    
 }
