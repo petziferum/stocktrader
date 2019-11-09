@@ -4,7 +4,7 @@
       <v-card-title>Trade or View your Portfolio</v-card-title>
       You may save or Load you Data<br>
       <hr>
-      <p>Your Funds: {{ funds }}</p>
+      <p>Your Funds: {{ funds | currency }}</p>
     </v-card>
   </v-container>
 </template>

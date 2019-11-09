@@ -10,7 +10,7 @@
         </v-toolbar-items>
         <v-spacer></v-spacer>
         <v-toolbar-items>
-        Funds: {{ funds }}
+        Funds: {{ funds | currency }}
         </v-toolbar-items>
         <v-spacer></v-spacer>
         <template v-if="$vuetify.breakpoint.lgAndUp">
