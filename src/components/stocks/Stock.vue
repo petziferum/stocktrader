@@ -14,12 +14,7 @@
     <v-container>
       <v-row>
         <v-col cols="12">
-          <input
-            type="number"
-            placeholder="Quantity"
-            v-model="quantity"
-            :class="{danger: insufficientFunds}"
-          />
+          <input />
         </v-col>
       </v-row>
       <v-row>
