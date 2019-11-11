@@ -10,17 +10,16 @@
 </template>
 
 <script>
-
-import appbar from './components/Appbar'
-import headerapp from './components/Headercomp'
+import appbar from "./components/Appbar";
+import headerapp from "./components/Headercomp";
 export default {
-  name: 'App',
+  name: "App",
   components: {
     appAppbar: appbar,
-    appHeadercomp: headerapp,
+    appHeadercomp: headerapp
   },
   created() {
-    this.$store.dispatch('initStocks')
+    this.$store.dispatch("initStocks");
   }
 };
 </script>
