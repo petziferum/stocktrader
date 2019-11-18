@@ -27,6 +27,13 @@ const mutations = {
         }
         state.funds += stockPrice * quantity;
     },
+    'SELL_ALL' (state, {stockId,stockPrice}){
+        const record = state.stocks.find(element => element.id == stockId);
+        console.log(record.quantity + " Stück verkauft");
+        state.funds += stockPrice * record.quantity;
+        state.stocks.splice(state.stocks.indexOf(record),1);
+        record.quantity = 0;
+    },
     'SET_PORTFOLIO' (state, portfolio) {
         state.funds = portfolio.funds;
         state.stocks = portfolio.stockPortfolio ? portfolio.stockPortfolio : [];
@@ -36,7 +43,10 @@ const mutations = {
 const actions = {
     sellStock({commit}, order) {
         commit('SELL_STOCK', order);
-    }
+    },
+    sellAll({commit},order){
+        commit('SELL_ALL', order);
+}
 };
 
 const getters = {
