@@ -3,7 +3,7 @@
     <app-Appbar />
 
     <app-Headercomp />
-    <v-content>
+    <v-content class="background-color:#c0c0c0;">
       <router-view></router-view>
     </v-content>
   </v-app>
