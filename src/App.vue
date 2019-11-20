@@ -1,6 +1,5 @@
 <template>
   <v-app>
-    <app-Appbar />
 
     <app-Headercomp />
     <v-content class="background-color:#c0c0c0;">
@@ -10,12 +9,11 @@
 </template>
 
 <script>
-import appbar from "./components/Appbar";
+
 import headerapp from "./components/Headercomp";
 export default {
   name: "App",
   components: {
-    appAppbar: appbar,
     appHeadercomp: headerapp
   },
   created() {
