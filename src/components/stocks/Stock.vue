@@ -14,7 +14,15 @@
     <v-container>
       <v-row>
         <v-col cols="12">
-          <input />
+          <v-list-item-content><div>Du kannst dir <b>{{maxOrder}}</b> Aktien leisten</div></v-list-item-content>
+          <input type="number" style="border:1px solid black;" v-model="quantity" />
+
+          <v-slider
+                  v-model="quantity"
+                  class="align-center"
+                  :max="maxOrder"
+                  min="0"
+          ></v-slider>
         </v-col>
       </v-row>
       <v-row>
@@ -40,6 +48,14 @@ export default {
   computed: {
     funds() {
       return this.$store.getters.funds;
+    },
+    maxOrder() {
+      const calc = Math.floor(this.funds / this.stock.price);
+      if (calc >= 0) {
+      return calc;
+    }else {
+      return 0;
+    }
     },
     insufficientFunds() {
       if (this.quantity * this.stock.price > this.funds) {

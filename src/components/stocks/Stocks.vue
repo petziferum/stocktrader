@@ -1,9 +1,9 @@
 <template>
   <v-row>
     <v-col v-for="stock in stocks" :key="stock.id">
-      <v-slide-x-transition>
+      <v-slide-y-transition>
         <app-stock :stock="stock"></app-stock>
-      </v-slide-x-transition>
+      </v-slide-y-transition>
     </v-col>
   </v-row>
 </template>
