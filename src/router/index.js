@@ -4,6 +4,7 @@ import Home from "../components/Home.vue";
 import Stocks from "../components/stocks/Stocks.vue";
 import Portfolio from "../components/portfolio/Portfolio";
 import Quotes from "../components/quotes/AppQuotes"
+import Movies from "../components/movies/Movies"
 
 Vue.use(VueRouter);
 
@@ -14,6 +15,11 @@ const routes = [
     path: "/",
     name: "home",
     component: Home
+  },
+  {
+    path: "/movies",
+    name: "movies",
+    component: Movies
   },
   {
     path:"/quotes", name: "quotes", component: Quotes
