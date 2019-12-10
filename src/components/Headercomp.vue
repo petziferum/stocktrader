@@ -53,6 +53,7 @@
 
 <script>
 import { mapActions } from "vuex";
+import axios from "axios"
 export default {
   name: "headercomp",
   data: () => ({
@@ -62,6 +63,14 @@ export default {
     funds() {
       return this.$store.getters.funds;
     }
+  },
+  mounted() {
+    axios.get('http://localhost:8080/data.json')
+            .then(response =>{
+              const d = response.data
+              console.log(d)
+              console.log(response)
+            })
   },
   methods: {
     ...mapActions({
@@ -78,7 +87,14 @@ export default {
         stockPortfolio: this.$store.getters.stockPortfolio,
         stocks: this.$store.getters.stocks
       };
-      this.$http.put("data.json", data);
+      // this.$http.put("data.json", data);
+      axios.post('http://localhost:8080/data.json', data)
+              .then(function (response) {
+                console.log(response);
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
     },
     loadData() {
       this.fetchData();
