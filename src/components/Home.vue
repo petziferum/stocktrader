@@ -18,16 +18,16 @@
 
 <v-card>
   <v-btn @click="save">Save</v-btn>
-  <v-card-text v-html="erfolg">Erfolg?</v-card-text>
-  <v-btn @click="load">load</v-btn>
+  <v-btn>load</v-btn>
   <v-card-actions>
     <v-sheet elevation="1" class="pa-1" color="warning">{{inhalt}}</v-sheet>
 
   </v-card-actions>
-  <v-card-text v-for="item in inhalt" :key="item.id">
-    <v-card-subtitle class="pa-1" v-html="item.id +'_'+ item.name"></v-card-subtitle>
+  <v-card-text v-for="item in inhalt[0].stocks" :key="item.id">
+    <v-card-subtitle dense class="pa-1" v-html="item.id +'_'+ item.name+' Price: '+item.price"></v-card-subtitle>
   </v-card-text>
 </v-card>
+    {{inhalt.length}}
   </v-container>
 </template>
 
@@ -36,44 +36,45 @@
   export default {
     data: () => ({
       bgImage: require("../assets/bgimg.jpg"),
-      erfolg: '',
+      erfolg: Boolean,
       inhalt: [],
 
     }),
     methods: {
       save: function(){
+        let newId = this.inhalt.length +1;
         const save = {
-          name: 'inhalt',
-          id: 12
-        }
+          name: 'Name'+newId,
+          id: newId,
+          inhalt:[]
+        };
           axios.post('http://localhost:8080/save.json', save)
             .then(res =>{
-              console.log("gespeichert")
-              console.log(res)
+              console.log("gespeichert");
+              console.log(res);
               this.erfolg = "Erfolgreich gespeichert!"
             })
         },
-      load: function(){
-        axios.get('http://localhost:8080/save.json')
-                .then(res => {
-                  let data = res.data
-                  for (let key in data) {
-                    const datei = data[key]
-                    this.inhalt.push(datei)
+      loadStocks: function(){
+        axios.get("http://localhost:8080/data.json")
+                .then(res =>{
+                  const resdata = res.data;
+                  for (let key in resdata){
+                    const inhalt = resdata[key];
+                    inhalt.id = key;
+                    console.log("Home inhalt:",inhalt)
+                    this.inhalt.push(inhalt);
                   }
-                  console.log(this.inhalt)
-
                 })
       }
-
   },
     computed: {
       funds() {
         return this.$store.getters.funds;
       },
     },
-    mounted() {
-      this.load()
+    mounted(){
+      this.loadStocks()
     }
   };
 </script>

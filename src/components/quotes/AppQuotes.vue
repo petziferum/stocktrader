@@ -39,7 +39,6 @@
                 return axios
                     .get('https://stocktrader-fcc4e.firebaseio.com/quotes.json')
                     .then(response => {
-                        console.log(response)
                         const quotes = response.data; //response.data ist der Buchstabensalat, also key
                         for( let key in quotes) {
                             const quote = quotes[key];  ////von diesem key aus wird weiter gegangen zum quote

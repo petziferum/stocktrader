@@ -59,25 +59,11 @@ export default {
   data: () => ({
     buttontext: "Stocks"
   }),
-  computed: {
-    funds() {
-      return this.$store.getters.funds;
-    }
-  },
-  mounted() {
-    axios.get('http://localhost:8080/data.json')
-            .then(response =>{
-              const d = response.data
-              console.log(d)
-              console.log(response)
-            })
-  },
   methods: {
     ...mapActions({
       randomizeStocks: "randomizeStocks",
       fetchData: "loadData"
     }),
-
     endDay() {
       this.randomizeStocks();
     },
@@ -87,7 +73,6 @@ export default {
         stockPortfolio: this.$store.getters.stockPortfolio,
         stocks: this.$store.getters.stocks
       };
-      // this.$http.put("data.json", data);
       axios.post('http://localhost:8080/data.json', data)
               .then(function (response) {
                 console.log(response);
@@ -99,6 +84,14 @@ export default {
     loadData() {
       this.fetchData();
     }
+  },
+    computed: {
+      funds() {
+        return this.$store.getters.funds;
+      },
+    },
+  mounted()  {
+    //this.loadData();
   }
 };
 </script>
