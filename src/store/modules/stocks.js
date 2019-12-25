@@ -1,12 +1,12 @@
-import stocks from "../../data/stocks";
+import stocksdata from "../../data/stocks";
 
 const state = {
   stocks: []
 };
 
 const mutations = {
-  SET_STOCKS(state, stocks) {
-    state.stocks = stocks;
+  SET_STOCKS(state, stocksdata) {
+    state.stocks = stocksdata;
   },
   RND_STOCKS(state) {
     state.stocks.forEach(stock => {
@@ -20,7 +20,7 @@ const actions = {
     commit("BUY_STOCK", order);
   },
   initStocks: ({ commit }) => {
-    commit("SET_STOCKS", stocks);
+    commit("SET_STOCKS", stocksdata);
   },
   randomizeStocks: ({ commit }) => {
     commit("RND_STOCKS");

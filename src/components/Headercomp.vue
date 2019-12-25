@@ -1,11 +1,11 @@
 <template>
-  <div class="mt-12">
-    <v-toolbar class="mt-4">
+  <div class="mt-0">
+    <v-toolbar class="mt-0">
       <v-toolbar-title>Stocks</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
-        <v-btn large elevation to="/movies">Movies</v-btn>
         <v-btn large elevation to="/">Home</v-btn>
+        <v-btn large elevation to="/movies">Movies</v-btn>
         <v-btn large elevation to="/stocks">{{ buttontext }}</v-btn>
         <v-btn large elevation to="/portfolio" class="light-blue">Portfolio</v-btn>
         <v-btn large to="/quotes">Quotes</v-btn>
@@ -13,7 +13,6 @@
       <v-spacer></v-spacer>
       <v-toolbar-items>Funds: {{ funds | currency }}</v-toolbar-items>
       <v-spacer></v-spacer>
-      <template v-if="$vuetify.breakpoint.lgAndUp">
         <v-btn class="elevation-1" fab @click="endDay">
           <v-icon large class="mr-2">mdi-database-refresh</v-icon>
         </v-btn>
@@ -35,6 +34,7 @@
             </v-list>
           </v-menu>
         </div>
+      <template v-if="$vuetify.breakpoint.lgAndUp">
 
         <v-spacer width="20px"></v-spacer>
         <v-btn icon>

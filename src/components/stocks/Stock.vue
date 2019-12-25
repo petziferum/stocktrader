@@ -14,8 +14,10 @@
     <v-container>
       <v-row>
         <v-col cols="12">
-          <v-list-item-content><div>Du kannst dir <b>{{maxOrder}}</b> Aktien leisten</div></v-list-item-content>
-          <input type="number" style="border:1px solid black;" v-model="quantity" />
+          <v-list-item-content><div>Du kannst dir <b>{{maxOrder}} {{stock.name}} </b> Aktien leisten</div></v-list-item-content>
+          <label>
+            <input type="number" style="border:1px solid black;" v-model="quantity">
+          </label>
 
           <v-slider
                   v-model="quantity"
