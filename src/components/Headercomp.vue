@@ -4,6 +4,7 @@
       <v-toolbar-title>Stocks</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
+        <v-btn large elevation to="/dashboard">Login</v-btn>
         <v-btn large elevation to="/movies">Movies</v-btn>
         <v-btn large elevation to="/">Home</v-btn>
         <v-btn large elevation to="/stocks">{{ buttontext }}</v-btn>
