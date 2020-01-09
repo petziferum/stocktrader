@@ -6,6 +6,8 @@ import Stocks from "../components/stocks/Stocks.vue";
 import Portfolio from "../components/portfolio/Portfolio";
 import Quotes from "../components/quotes/AppQuotes"
 import Movies from "../components/movies/Movies"
+import Dashboard from "../components/User/Dashboard";
+import Login from '../components/User/Login';
 
 Vue.use(VueRouter);
 
@@ -16,6 +18,16 @@ const routes = [
     path: "/",
     name: "home",
     component: Home
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: Login
+  },
+  {
+    path:"/dashboard",
+    name:"dashboard",
+    component: Dashboard
   },
   {
     path: "/movies",
