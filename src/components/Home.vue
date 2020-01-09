@@ -16,18 +16,49 @@
       </template>
     </v-hover>
 
-<v-card>
-  <v-btn @click="save">Save</v-btn>
-  <v-btn>load</v-btn>
-  <v-card-actions>
-    <v-sheet elevation="1" class="pa-1" color="warning">{{inhalt}}</v-sheet>
+    <v-card>
+      <v-card-actions>
+        <v-btn @click="save">Save</v-btn>
+        <v-btn @click="chucknorris">Chuck Norris</v-btn>
+        <v-btn @click="joke.pop()">löschen</v-btn>
+      </v-card-actions>
+    </v-card>
+    <v-row>
+      <v-col>
+        <v-row>
 
-  </v-card-actions>
-  <v-card-text v-for="item in inhalt[0].stocks" :key="item.id">
-    <v-card-subtitle dense class="pa-1" v-html="item.id +'_'+ item.name+' Price: '+item.price"></v-card-subtitle>
-  </v-card-text>
-</v-card>
-    {{inhalt.length}}
+              <v-card class="d-inline-flex ma-3">
+                  <v-img :src="chuck.icon" max-width="50" contain ></v-img>
+                <v-card-text transition="v-expand-transition">
+                <v-list v-for="(jokes, id) in joke" :key="id">
+                  <transition>
+                    <v-slide-x-transition>
+                  <v-list-item two-line>
+                    <v-list-item-content>{{id}}. {{jokes}}</v-list-item-content>
+                  </v-list-item>
+                    </v-slide-x-transition>
+                    </transition>
+                </v-list>
+                </v-card-text>
+              </v-card>
+        </v-row>
+        <v-row>
+          <div class="col-xs-12">
+            <v-btn @click="show =! show">Show</v-btn>
+
+            <v-card class="alert alert-info" width="300" height="200">
+              <v-card-title>Titel</v-card-title>
+              <transition name="fade">
+                <div v-if="show">This is an information</div>
+              </transition>
+              <transition name="slide">
+                <div v-if="show">This is an INformation</div>
+              </transition>
+            </v-card>
+          </div>
+        </v-row>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -35,48 +66,114 @@
   import axios from 'axios'
   export default {
     data: () => ({
-      bgImage: require("../assets/bgimg.jpg"),
-      erfolg: Boolean,
-      inhalt: [],
+      show:false,
+      erfolg: false,
+      inhalt: [{inhalt:[{name:"inhalt",preis:"90"}]}],
+      chuck:[{value:[],icon:""}],
+      joke:[]
 
     }),
     methods: {
+      chucknorris: function() {
+        axios({
+          "method":"GET",
+          "url":"https://matchilling-chuck-norris-jokes-v1.p.rapidapi.com/jokes/random",
+          "headers":{
+            "content-type":"application/octet-stream",
+            "x-rapidapi-host":"matchilling-chuck-norris-jokes-v1.p.rapidapi.com",
+            "x-rapidapi-key":"eb08c155a9msh0a16aabaad3fd21p1c7fbbjsn1065d440920e",
+            "accept":"application/json"
+          }
+        })
+                .then(response=>
+                {
+                  const data = response.data;
+                  console.log(data.icon_url);
+                  const icon = data.icon_url
+                  this.erfolg = true;
+                  this.chuck.icon = icon;
+                  this.joke.push(data.value);
+                })
+                .catch((error)=>{
+                  console.log(error)
+                })
+      },
       save: function(){
         let newId = this.inhalt.length +1;
         const save = {
-          name: 'Name'+newId,
           id: newId,
-          inhalt:[]
+          name: 'Name'+ newId,
+          inhalt:[newId,"hallo das ist der Inhalt"]
         };
-          axios.post('http://localhost:8080/save.json', save)
-            .then(res =>{
-              console.log("gespeichert");
-              console.log(res);
-              this.erfolg = "Erfolgreich gespeichert!"
-            })
-        },
-      loadStocks: function(){
-        axios.get("http://localhost:8080/data.json")
+        axios.post('http://localhost:8080/save.json', save)
                 .then(res =>{
-                  const resdata = res.data;
-                  for (let key in resdata){
-                    const inhalt = resdata[key];
-                    inhalt.id = key;
-                    console.log("Home inhalt:",inhalt)
-                    this.inhalt.push(inhalt);
-                  }
+                  console.log("data: ",res.data,"save:", save);
+                  this.erfolg = "Erfolgreich gespeichert!"
                 })
-      }
-  },
+      },
+      // loadStocks: function(){
+      //   axios.get("http://localhost:8080/data.json")
+      //           .then(res =>{
+      //             const resdata = res.data;
+      //             for (let key in resdata){
+      //               const inhalt = resdata[key];
+      //               inhalt.id = key;
+      //               console.log("Home inhalt:",inhalt)
+      //               this.inhalt.push(inhalt);
+      //             }
+      //           })
+      // }
+    },
     computed: {
       funds() {
         return this.$store.getters.funds;
-      },
+      }
+
     },
     mounted(){
-      this.loadStocks()
+      // this.loadStocks()
     }
   };
 </script>
-<style scoped>
+<style>
+  .fade-enter {
+    opacity: 0 ;
+
+  }
+  .fade-enter-active {
+    transition: opacity 1s;
+  }
+  .fade-leave {
+
+  }
+  .fade-leave-active {
+    transition: opacity 1s;
+    opacity: 0;
+  }
+  .slide-enter {
+    opacity: 0;
+  }
+  .slide-enter-active {
+    animation: slide-in 1s ease-out forwards;
+    transition: opacity 1s;
+  }
+  .slide-leave-active {
+    animation: slide-out 1s ease-out forwards;
+    transition: opacity .5s;
+    opacity: 0;
+  }
+  @keyframes slide-in {
+    from {
+      transform:translateY(100px);
+    }
+    to { transform:translateY(0)}
+  }
+  @keyframes slide-out {
+    from {
+      transform:translateY(0);
+    }
+    to {
+      transform: translateX(20px);
+    }
+  }
 </style>

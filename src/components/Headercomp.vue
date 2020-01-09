@@ -9,6 +9,7 @@
         <v-btn large elevation to="/stocks">{{ buttontext }}</v-btn>
         <v-btn large elevation to="/portfolio" class="light-blue">Portfolio</v-btn>
         <v-btn large to="/quotes">Quotes</v-btn>
+        <v-btn large elevation to="/login">Login</v-btn>
       </v-toolbar-items>
       <v-spacer></v-spacer>
       <v-toolbar-items>Funds: {{ funds | currency }}</v-toolbar-items>

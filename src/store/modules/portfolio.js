@@ -1,7 +1,7 @@
-// import axios from 'axios'
+import axios from 'axios'
 
 const state = {
-    funds: 20000,
+    funds: 0,
     stocks: []
 };
 
@@ -62,6 +62,20 @@ const getters = {
         });
     },
     funds (state) {
+        axios.get("http://localhost:8080/data.json")
+            .then(res => {
+                const items = [];
+                for(let key in res.data) {
+                    const item = res.data[key];
+                    item.id = key;
+                    item.funds = res.data[key].funds
+                    items.push(item);
+                    console.log("portfolio item: ", item.id, item.funds)
+                }
+                console.log(items[0].funds)
+                state.funds = items[0].funds;
+            });
+
       return state.funds;
     }
 };
