@@ -1,7 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 //import Home from "../components/Test.vue";
-import Dashboard from '../components/Userdashboard.vue'
 import Home from "../components/Home.vue";
 import Stocks from "../components/stocks/Stocks.vue";
 import Portfolio from "../components/portfolio/Portfolio";
@@ -22,7 +21,6 @@ const routes = [
     component: Home
   },
   {
-<<<<<<< HEAD
     path: "/chat",
     name: "chat",
     component: Chat
@@ -35,10 +33,6 @@ const routes = [
   {
     path:"/dashboard",
     name:"dashboard",
-=======
-    path: "/dashboard",
-    name: "dashboard",
->>>>>>> user
     component: Dashboard
   },
   {
