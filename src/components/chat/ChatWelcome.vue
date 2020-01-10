@@ -16,7 +16,9 @@
                     <label for="name">Enter your name:</label>
                     <v-input type="text" name="name" v-model="name">
                     </v-input>
-                    <v-btn class="btn teal">Enter Chat</v-btn>
+                    <v-btn class="btn teal">Enter Chat
+
+                    </v-btn>
                 </form>
             </v-card-actions>
 
