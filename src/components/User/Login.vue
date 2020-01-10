@@ -6,13 +6,13 @@
             <v-form class="px-3" ref="form">
                 <v-text-field v-model="title" label="Name" prepend-icon="mdi-account" :rules="inputRules"></v-text-field>
                 <v-text-field v-model="email" label="Mail" prepend-icon="mdi-email" :rules="emailRules"></v-text-field>
-                <v-menu v-model="menu" :close-on-content-click="false" max-width="290">
+                <v-menu v-model="menu" :close-on-content-click="true" max-width="290">
                     <template v-slot:activator="{on}">
                     <v-text-field v-on="on" slot="activator" :rules="inputRules"
-                                  :value="formattedDate" clearable label="Date" prepend-icon="mdi-calendar-range">
+                                  :value="due" clearable label="Date" prepend-icon="mdi-calendar-range">
                     </v-text-field>
                     </template>
-                    <v-date-picker v-model="due" @change="menu = false"></v-date-picker>
+                    <v-date-picker v-model="due" @change="menu = true"></v-date-picker>
                 </v-menu>
 
                 <v-spacer></v-spacer>
@@ -59,7 +59,7 @@
             }
         },
         computed: {
-            formattedDate () {
+            formattedDates () {
                 return this.due ? format(parseISO(this.due), 'DD.MM.YYYY') : ''
             }
         }
