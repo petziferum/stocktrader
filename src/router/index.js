@@ -8,6 +8,7 @@ import Quotes from "../components/quotes/AppQuotes"
 import Movies from "../components/movies/Movies"
 import Dashboard from "../components/User/Dashboard";
 import Login from '../components/User/Login';
+import Chat from '../components/chat/ChatWelcome'
 
 Vue.use(VueRouter);
 
@@ -18,6 +19,11 @@ const routes = [
     path: "/",
     name: "home",
     component: Home
+  },
+  {
+    path: "/chat",
+    name: "chat",
+    component: Chat
   },
   {
     path: "/login",
