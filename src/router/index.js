@@ -8,7 +8,8 @@ import Quotes from "../components/quotes/AppQuotes"
 import Movies from "../components/movies/Movies"
 import Dashboard from "../components/User/Dashboard";
 import Login from '../components/User/Login';
-import Chat from '../components/chat/ChatWelcome'
+import Chatwelcome from '../components/chat/ChatWelcome'
+import Chat from "../components/chat/ChatApp"
 
 Vue.use(VueRouter);
 
@@ -21,9 +22,23 @@ const routes = [
     component: Home
   },
   {
+    path: "/chatwelcome",
+    name: "chatwelcome",
+    component: Chatwelcome
+  },
+  {
     path: "/chat",
-    name: "chat",
-    component: Chat
+    name: "Chat",
+    component: Chat,
+    props: true,
+    beforeEnter: (to, from, next) => {
+      console.log(to.params.name, from.name, next.name)
+      if(to.params.name){
+        next()
+      } else {
+        next({name: 'chatwelcome'})
+      }
+    }
   },
   {
     path: "/login",

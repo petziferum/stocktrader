@@ -1,23 +1,12 @@
 <template>
     <div class="welcome container">
-        <div class="card">
-            <div class="card-content center-align">
-                <h2 class="teal-text">Welcome</h2>
-
-
-            </div>
-        </div>
-        <v-card max-width="500" class="mx-auto">
-            <v-content>
-                <v-card-title>Welcome</v-card-title>
-            </v-content>
-            <v-card-actions>
-                <form @submit.prevent="enterChat">
-                        <v-text-field label="name" type="text" v-model="name"></v-text-field>
-                    <v-btn class="btn teal" @click="enterChat">Enter Chat</v-btn>
-                </form>
-            </v-card-actions>
-
+        <v-card max-width="600" style="border:1px solid" class="mx-auto">
+            <v-card-title class="d-flex justify-center">Welcome</v-card-title>
+                <v-form class="pa-4">
+                        <v-text-field label="name" type="text" v-model="name" v-on:keyup.enter="enterChat"></v-text-field>
+                        <p v-if="feedback" style="color:red">{{feedback}}</p>
+                        <v-btn class="btn teal" @click="enterChat">Enter Chat</v-btn>
+                </v-form>
         </v-card>
     </div>
 </template>
@@ -28,12 +17,20 @@
         name: "ChatWelcome.vue",
         data() {
             return{
-                name: null
+                name: null,
+                feedback: null
             }
         },
         methods:{
-            enterChat:() => {
-                console.log(this.name)
+            enterChat() {
+                if(this.name){
+                    this.$router.push({
+                        name: 'Chat',
+                        params: {name: this.name},
+                    })
+                }else {
+                    this.feedback = "you must enter a name"
+                }
             }
         }
     }

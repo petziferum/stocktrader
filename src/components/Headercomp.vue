@@ -10,7 +10,7 @@
         <v-btn large elevation to="/movies">Movies</v-btn>
         <v-btn large elevation to="/stocks">{{ buttontext }}</v-btn>
         <v-btn large elevation to="/portfolio" class="light-blue">Portfolio</v-btn>
-        <v-btn large to="/chat">Chat</v-btn>
+        <v-btn large to="/chatwelcome">Chat</v-btn>
         <v-btn large to="/quotes">Quotes</v-btn>
         <v-btn large elevation to="/login">Login</v-btn>
       </v-toolbar-items>

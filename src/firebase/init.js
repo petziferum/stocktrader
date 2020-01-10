@@ -1,13 +1,14 @@
 import firebase from "firebase";
 
-var firebaseConfig = {
-    apiKey: "AIzaSyBBDHcBhKS3sGGLcNK4S46pku1--ZJnCFs",
-    authDomain: "chat-85609.firebaseapp.com",
-    databaseURL: "https://chat-85609.firebaseio.com",
-    projectId: "chat-85609",
-    storageBucket: "chat-85609.appspot.com",
-    messagingSenderId: "777753554218",
-    appId: "1:777753554218:web:108e2091df30acb3004253"
+const firebaseConfig = {
+    apiKey: "AIzaSyDZhllQeleel-tjfkpL-MNABdC3bABw4r0",
+    authDomain: "stocktrader-fcc4e.firebaseapp.com",
+    databaseURL: "https://stocktrader-fcc4e.firebaseio.com",
+    projectId: "stocktrader-fcc4e",
+    storageBucket: "stocktrader-fcc4e.appspot.com",
+    messagingSenderId: "349941798776",
+    appId: "1:349941798776:web:8bafca194c1ffe644d1a8d",
+    measurementId: "G-MJ1KBH0D40"
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
