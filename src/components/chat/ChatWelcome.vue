@@ -13,7 +13,7 @@
             </v-content>
             <v-card-actions>
                 <form @submit.prevent="enterChat">
-                    <label for="name">Enter your name:</label>
+                    <label>Enter your name:</label>
                     <v-input type="text" name="name" v-model="name">
                     </v-input>
                     <v-btn class="btn teal">Enter Chat
@@ -28,7 +28,12 @@
 
 <script>
     export default {
-        name: "ChatWelcome.vue"
+        name: "ChatWelcome.vue",
+        data() {
+            return {
+                name: null
+            }
+        }
     }
 </script>
 
